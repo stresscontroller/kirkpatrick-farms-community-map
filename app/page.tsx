@@ -7,6 +7,7 @@ import { MapPanel } from "@/components/map-panel";
 import { MobilePanelDrawer } from "@/components/mobile-panel-drawer";
 import { MapLegend } from "@/components/map-legend";
 import { PrintButton } from "@/components/print-button";
+import { DataReadinessBanner } from "@/components/data-readiness-banner";
 import type { MapLocation, Trail, LocationCategory } from "@/types/map";
 import { CATEGORY_INFO } from "@/types/map";
 import { MapPin, Share2, Menu } from "lucide-react";
@@ -92,6 +93,7 @@ export default function HomePage() {
               trails, ponds, tot lots, pools, and more. Your guide to everything
               Kirkpatrick Farms has to offer.
             </p>
+            {/* <DataReadinessBanner className="mx-auto mb-6 max-w-2xl text-left" /> */}
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button
                 size="lg"
@@ -219,7 +221,10 @@ export default function HomePage() {
       </header>
 
       {/* Main Content */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="relative flex flex-1 overflow-hidden">
+        <div className="pointer-events-none absolute top-16 left-4 z-[1200] max-w-lg print:hidden">
+          {/* <DataReadinessBanner className="pointer-events-auto shadow-sm" /> */}
+        </div>
         {/* Desktop Sidebar */}
         <aside className="hidden w-80 shrink-0 border-r bg-background lg:block print:hidden">
           <MapPanel

@@ -313,6 +313,14 @@ export const communityMapData: CommunityMapData = {
   zoom: 15,
 };
 
+// Tracks which parts still need client-provided source data.
+export const dataReadiness = {
+  photosProvidedByClient: false,
+  descriptionsProvidedByClient: false,
+  boundariesConfirmedByClient: false,
+  usesSampleData: true,
+} as const;
+
 export const getLocationById = (id: string): MapLocation | undefined => {
   return communityMapData.locations.find((loc) => loc.id === id);
 };

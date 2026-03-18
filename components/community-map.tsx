@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { communityMapData } from "@/data/community-map-data";
 import { CATEGORY_INFO, type MapLocation, type Trail, type LocationCategory } from "@/types/map";
 import { Button } from "@/components/ui/button";
-import { RotateCcw, ZoomIn, ZoomOut, Layers } from "lucide-react";
+import { RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -37,20 +37,23 @@ export function CommunityMap({
   const markersRef = useRef<L.Marker[]>([]);
   const polylinesRef = useRef<L.Polyline[]>([]);
   const boundaryRef = useRef<L.Polygon | null>(null);
+  const boundaryMaskRef = useRef<L.Polygon | null>(null);
   const [isMapReady, setIsMapReady] = useState(false);
 
   // Initialize map
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
 
+    const boundaryCoords = communityMapData.boundary.coordinates.map(
+      ([lat, lng]) => [lat, lng] as [number, number]
+    );
+    const boundaryBounds = L.latLngBounds(boundaryCoords);
+
     const map = L.map(mapContainerRef.current, {
       center: communityMapData.center,
       zoom: communityMapData.zoom,
       zoomControl: false,
-      maxBounds: L.latLngBounds(
-        [communityMapData.center[0] - 0.02, communityMapData.center[1] - 0.02],
-        [communityMapData.center[0] + 0.02, communityMapData.center[1] + 0.02]
-      ),
+      maxBounds: boundaryBounds.pad(0.2),
       maxBoundsViscosity: 0.8,
       minZoom: 14,
       maxZoom: 18,
@@ -60,9 +63,25 @@ export function CommunityMap({
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
+    // Dim areas outside community while keeping the interior clear.
+    // This provides a "community-only" focus even before final boundary confirmation.
+    const worldRing: [number, number][] = [
+      [90, -180],
+      [90, 180],
+      [-90, 180],
+      [-90, -180],
+    ];
+    const boundaryMask = L.polygon([worldRing, boundaryCoords], {
+      stroke: false,
+      fillColor: "#111827",
+      fillOpacity: 0.35,
+      interactive: false,
+    }).addTo(map);
+    boundaryMaskRef.current = boundaryMask;
+
     // Add community boundary
     const boundary = L.polygon(
-      communityMapData.boundary.coordinates.map(([lat, lng]) => [lat, lng]),
+      boundaryCoords,
       {
         color: "#22c55e",
         weight: 3,
@@ -74,11 +93,14 @@ export function CommunityMap({
     boundaryRef.current = boundary;
 
     mapRef.current = map;
-    setIsMapReady(true);
+    map.whenReady(() => {
+      setIsMapReady(true);
+    });
 
     return () => {
       map.remove();
       mapRef.current = null;
+      boundaryMaskRef.current = null;
     };
   }, []);
 
