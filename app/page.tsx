@@ -5,9 +5,7 @@ import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { MapPanel } from "@/components/map-panel";
 import { MobilePanelDrawer } from "@/components/mobile-panel-drawer";
-import { MapLegend } from "@/components/map-legend";
 import { PrintButton } from "@/components/print-button";
-import { DataReadinessBanner } from "@/components/data-readiness-banner";
 import type { MapLocation, Trail, LocationCategory } from "@/types/map";
 import { CATEGORY_INFO } from "@/types/map";
 import { MapPin, Share2, Menu } from "lucide-react";
@@ -168,13 +166,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* Legend Preview */}
-        <div className="container mx-auto px-4 pb-20">
-          <div className="mx-auto max-w-md rounded-xl border bg-card p-6 shadow-sm">
-            <MapLegend />
-          </div>
-        </div>
       </main>
     );
   }
@@ -254,11 +245,6 @@ export default function HomePage() {
         activeFilters={activeFilters}
         onFilterChange={setActiveFilters}
       />
-
-      {/* Print Legend */}
-      <div className="print-legend hidden print:block">
-        <MapLegend compact />
-      </div>
     </main>
   );
 }

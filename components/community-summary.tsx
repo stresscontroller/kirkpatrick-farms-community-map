@@ -1,7 +1,7 @@
 "use client";
 
 import { getCategoryCounts } from "@/data/community-map-data";
-import { CATEGORY_INFO } from "@/types/map";
+import { CATEGORY_INFO, type LocationCategory } from "@/types/map";
 import {
   Baby,
   Waves,
@@ -26,7 +26,15 @@ const iconMap = {
   footprints: Footprints,
 };
 
-export function CommunitySummary() {
+interface CommunitySummaryProps {
+  activeFilters: LocationCategory[];
+  onFilterChange: (filters: LocationCategory[]) => void;
+}
+
+export function CommunitySummary({
+  activeFilters,
+  onFilterChange,
+}: CommunitySummaryProps) {
   const counts = getCategoryCounts();
 
   const summaryItems = [
@@ -54,9 +62,16 @@ export function CommunitySummary() {
           const count = counts[item.category] || 0;
 
           return (
-            <div
+            <button
               key={item.category}
-              className="flex items-center gap-2 rounded-lg bg-muted/50 px-3 py-2"
+              type="button"
+              onClick={() => onFilterChange([item.category as LocationCategory])}
+              className={`flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left transition-colors ${
+                activeFilters.length === 1 &&
+                activeFilters.includes(item.category as LocationCategory)
+                  ? "bg-accent ring-1 ring-primary/40"
+                  : "bg-muted/50 hover:bg-muted"
+              }`}
             >
               <div
                 className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
@@ -70,7 +85,7 @@ export function CommunitySummary() {
                   {item.label}
                 </p>
               </div>
-            </div>
+            </button>
           );
         })}
       </div>

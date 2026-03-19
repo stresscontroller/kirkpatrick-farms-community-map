@@ -4,7 +4,6 @@ import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { FilterBar } from "@/components/filter-bar";
-import { MapLegend } from "@/components/map-legend";
 import { LocationCard, LocationCardSkeleton } from "@/components/location-card";
 import { LocationGallery } from "@/components/location-gallery";
 import { CommunitySummary } from "@/components/community-summary";
@@ -33,28 +32,41 @@ export function MapPanel({
   const [searchQuery, setSearchQuery] = useState("");
   const [galleryOpen, setGalleryOpen] = useState(false);
 
-  const filteredLocations = useMemo(() => {
-    let locations = communityMapData.locations;
+  const filteredItems = useMemo(() => {
+    let items: (MapLocation | Trail)[] = [
+      ...communityMapData.locations,
+      ...communityMapData.trails,
+    ];
+
+    const categoryKeywords: Partial<Record<LocationCategory, string[]>> = {
+      trail: ["trail", "trails", "walking trail", "walking path", "path"],
+      "tot-lot": ["tot lot", "tot lots", "playground", "playgrounds"],
+      "tennis-court": ["tennis", "court", "tennis court", "tennis courts"],
+      "basketball-court": ["basketball", "court", "basketball court"],
+    };
 
     // Filter by active categories
     if (activeFilters.length > 0) {
-      locations = locations.filter((loc) =>
-        activeFilters.includes(loc.category)
-      );
+      items = items.filter((item) => activeFilters.includes(item.category));
     }
 
     // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
-      locations = locations.filter(
-        (loc) =>
-          loc.name.toLowerCase().includes(query) ||
-          loc.description.toLowerCase().includes(query) ||
-          loc.tags.some((tag) => tag.toLowerCase().includes(query))
+      items = items.filter((item) => {
+        const keywords = categoryKeywords[item.category] ?? [];
+        return (
+          item.name.toLowerCase().includes(query) ||
+          item.description.toLowerCase().includes(query) ||
+          item.tags.some((tag) => tag.toLowerCase().includes(query)) ||
+          item.category.replace("-", " ").includes(query) ||
+          keywords.some((k) => k.includes(query))
+        );
+      }
       );
     }
 
-    return locations;
+    return items;
   }, [activeFilters, searchQuery]);
 
   const handleOpenGallery = () => {
@@ -111,22 +123,12 @@ export function MapPanel({
 
           <Separator />
 
-          {/* Legend */}
-          <MapLegend />
-
-          <Separator />
-
-          {/* Community Summary */}
-          <CommunitySummary />
-
-          <Separator />
-
           {/* Location List */}
           <div>
             <h3 className="mb-2 text-sm font-semibold text-foreground">
-              All Locations ({filteredLocations.length})
+              All Places & Trails ({filteredItems.length})
             </h3>
-            {filteredLocations.length === 0 ? (
+            {filteredItems.length === 0 ? (
               <Empty className="py-8">
                 <EmptyMedia variant="icon">
                   <MapIcon className="h-10 w-10" />
@@ -140,13 +142,13 @@ export function MapPanel({
               </Empty>
             ) : (
               <div className="space-y-2">
-                {filteredLocations.map((location) => (
+                {filteredItems.map((location) => (
                   <button
                     key={location.id}
                     onClick={() => onLocationSelect(location)}
-                    className={`w-full rounded-lg border p-3 text-left transition-colors hover:bg-accent ${
+                    className={`w-full rounded-lg border py-0 px-4 text-left transition-colors bg-white hover:bg-black/10 ${
                       selectedLocation?.id === location.id
-                        ? "border-primary bg-accent"
+                        ? "border-primary "
                         : "border-transparent"
                     }`}
                   >
@@ -159,6 +161,14 @@ export function MapPanel({
               </div>
             )}
           </div>
+
+          <Separator />
+
+          {/* Community Summary */}
+          <CommunitySummary
+            activeFilters={activeFilters}
+            onFilterChange={onFilterChange}
+          />
         </div>
       </div>
 
