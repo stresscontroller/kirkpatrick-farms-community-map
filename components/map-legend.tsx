@@ -1,10 +1,12 @@
 "use client";
 
-import { CATEGORY_INFO, type LocationCategory } from "@/types/map";
+import { CATEGORY_INFO } from "@/types/map";
 import {
   Baby,
   Waves,
   Droplets,
+  Target,
+  Dribbble,
   Building,
   Landmark,
   Flower2,
@@ -15,6 +17,8 @@ const iconMap = {
   baby: Baby,
   waves: Waves,
   droplets: Droplets,
+  target: Target,
+  dribbble: Dribbble,
   building: Building,
   landmark: Landmark,
   flower2: Flower2,
@@ -32,7 +36,6 @@ export function MapLegend({ compact = false }: MapLegendProps) {
     return (
       <div className="flex flex-wrap gap-2">
         {categories.map((cat) => {
-          const Icon = iconMap[cat.icon as keyof typeof iconMap];
           return (
             <div
               key={cat.id}

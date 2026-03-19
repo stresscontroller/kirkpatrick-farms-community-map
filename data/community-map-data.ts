@@ -1,15 +1,133 @@
 import type { CommunityMapData, MapLocation, Trail, CommunityBoundary } from "@/types/map";
 
-// Center coordinates for Kirkpatrick Farms (fictional - using Ashburn, VA area)
-const CENTER: [number, number] = [39.0438, -77.4874];
+// Center coordinates aligned to client-provided Kirkpatrick Farms references
+const CENTER: [number, number] = [38.9128, -77.5558];
 
 const locations: MapLocation[] = [
+  // Ponds (3)
+  {
+    id: "north-pond",
+    name: "Bright Ct Pond",
+    category: "pond",
+    coordinates: [38.913757, -77.559260],
+    description: "Pond area near Bright Court with adjacent amenity space for neighborhood gatherings and outdoor games.",
+    address: "Near Bright Ct, Kirkpatrick Farms, Aldie, VA",
+    images: [
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop",
+    ],
+    tags: ["bright ct", "deck", "gazebo", "playground", "chess/checker"],
+  },
+  {
+    id: "south-pond",
+    name: "Diligence Ct Pond",
+    category: "pond",
+    coordinates: [38.912226, -77.557422],
+    description: "Pond feature near Diligence Court with deck and gazebo amenities identified on client-provided reference imagery.",
+    address: "Near Diligence Ct, Kirkpatrick Farms, Aldie, VA",
+    images: [
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format&fit=crop",
+    ],
+    tags: ["diligence ct", "deck", "gazebo", "cornhole", "byobags"],
+  },
+  {
+    id: "east-pond",
+    name: "Mindful Ct Pond",
+    category: "pond",
+    coordinates: [38.916524, -77.551444],
+    description: "Pond feature along Mindful Court, shown in client satellite references as one of the core neighborhood water features.",
+    address: "Near Mindful Ct, Kirkpatrick Farms, Aldie, VA",
+    images: [
+      "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800&auto=format&fit=crop",
+    ],
+    tags: ["mindful ct", "pond", "walking routes"],
+  },
+
+  // Pools (2)
+  {
+    id: "community-pool",
+    name: "Community Pool",
+    category: "pool",
+    coordinates: [38.911456, -77.558325],
+    description: "Primary community pool area used for seasonal recreation, including general swim and family-friendly amenities.",
+    address: "25520 Summerall Dr, Aldie, VA 20105",
+    images: [
+      "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519315901367-f34ff9154487?w=800&auto=format&fit=crop",
+    ],
+    tags: ["lap lanes", "diving board", "splash area", "seasonal"],
+  },
+  // {
+  //   id: "west-pool",
+  //   name: "West Pool",
+  //   category: "pool",
+  //   coordinates: [38.9098, -77.5600],
+  //   description: "Secondary neighborhood pool with a family-oriented layout and convenient access for nearby homes.",
+  //   address: "Near Kirkpatrick Farms west section, Aldie, VA",
+  //   images: [
+  //     "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&auto=format&fit=crop",
+  //   ],
+  //   tags: ["zero-entry", "water slide", "family-friendly"],
+  // },
+
+  // Tennis Court (2)
+  {
+    id: "clubhouse-tennis-court",
+    name: "Clubhouse Tennis Court",
+    category: "tennis-court",
+    coordinates: [38.911155, -77.558544],
+    description: "Primary tennis court at the clubhouse complex, based on the client-provided clubhouse satellite image.",
+    address: "25520 Summerall Dr, Aldie, VA 20105",
+    images: [
+      "https://images.unsplash.com/photo-1471295253337-3ceaaedca402?w=800&auto=format&fit=crop",
+    ],
+    tags: ["tennis", "clubhouse", "summerall dr"],
+  },
+  {
+    id: "cherish-ct-tennis-court",
+    name: "Cherish Ct Tennis Court",
+    category: "tennis-court",
+    coordinates: [38.914611, -77.550114],
+    description: "Second tennis court location near Cherish Court and Destiny Drive from client reference imagery.",
+    address: "Near Cherish Ct & Destiny Dr, Aldie, VA",
+    images: [
+      "https://images.unsplash.com/photo-1471295253337-3ceaaedca402?w=800&auto=format&fit=crop",
+    ],
+    tags: ["tennis", "cherish ct", "destiny dr"],
+  },
+
+  // Basketball Court (2)
+  {
+    id: "clubhouse-basketball-court",
+    name: "Clubhouse Basketball Court",
+    category: "basketball-court",
+    coordinates: [38.911055, -77.558297],
+    description: "Primary basketball court at the clubhouse complex, split from tennis for independent filtering.",
+    address: "25520 Summerall Dr, Aldie, VA 20105",
+    images: [
+      "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&auto=format&fit=crop",
+    ],
+    tags: ["basketball", "clubhouse", "summerall dr"],
+  },
+  {
+    id: "cherish-ct-basketball-court",
+    name: "Cherish Ct Basketball Court",
+    category: "basketball-court",
+    coordinates: [38.914578, -77.549819],
+    description: "Second basketball court location near Cherish Court and Destiny Drive from client reference imagery.",
+    address: "Near Cherish Ct & Destiny Dr, Aldie, VA",
+    images: [
+      "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&auto=format&fit=crop",
+    ],
+    tags: ["basketball", "cherish ct", "destiny dr"],
+  },
+
   // Tot Lots (9)
   {
     id: "tot-lot-a",
-    name: "Tot Lot A - Maple Grove",
+    name: "Tot Lot A - Kirkpatrick Farms Playground",
     category: "tot-lot",
-    coordinates: [39.0445, -77.4885],
+    coordinates: [38.915011, -77.560144],
     description: "Neighborhood tot lot with colorful play features, including swings and climbers, designed for younger children and quick family visits.",
     address: "Near 100 Maple Grove Lane",
     images: [
@@ -20,9 +138,9 @@ const locations: MapLocation[] = [
   },
   {
     id: "tot-lot-b",
-    name: "Tot Lot B - Oak Park",
+    name: "Tot Lot B - Kirkpatrick Farms Park",
     category: "tot-lot",
-    coordinates: [39.0452, -77.4868],
+    coordinates: [38.91640044330455, -77.55133459699549],
     description: "Shaded playground with modern slides and climbing elements, offering a comfortable stop during warm-weather walks.",
     address: "Near 200 Oak Park Drive",
     images: [
@@ -32,9 +150,9 @@ const locations: MapLocation[] = [
   },
   {
     id: "tot-lot-c",
-    name: "Tot Lot C - Willow Way",
+    name: "Tot Lot C - Kirkpatrick Farms Playground",
     category: "tot-lot",
-    coordinates: [39.0428, -77.4892],
+    coordinates: [38.917928247118105, -77.55883700926496],
     description: "Nature-inspired tot lot with wood-style structures and sensory play features that blend with the surrounding landscape.",
     address: "Near 150 Willow Way",
     images: [
@@ -44,9 +162,9 @@ const locations: MapLocation[] = [
   },
   {
     id: "tot-lot-d",
-    name: "Tot Lot D - Birch Circle",
+    name: "Tot Lot D - Kirkpatrick Farms Playground",
     category: "tot-lot",
-    coordinates: [39.0465, -77.4855],
+    coordinates: [38.90916696748479, -77.55703693809983],
     description: "Compact toddler-friendly play area with soft surfacing and age-appropriate equipment for safe, everyday use.",
     address: "Near 75 Birch Circle",
     images: [
@@ -56,9 +174,9 @@ const locations: MapLocation[] = [
   },
   {
     id: "tot-lot-e",
-    name: "Tot Lot E - Cedar Court",
+    name: "Tot Lot E - Kirkpatrick Farms Playground",
     category: "tot-lot",
-    coordinates: [39.0418, -77.4878],
+    coordinates: [38.916810177814384, -77.56600920251728],
     description: "Larger neighborhood tot lot with separate activity zones to support play for different age groups.",
     address: "Near 300 Cedar Court",
     images: [
@@ -68,9 +186,9 @@ const locations: MapLocation[] = [
   },
   {
     id: "tot-lot-f",
-    name: "Tot Lot F - Pine Ridge",
+    name: "Tot Lot F - Kirkpatrick West Neighborhood Park",
     category: "tot-lot",
-    coordinates: [39.0472, -77.4888],
+    coordinates: [38.912968, -77.571796],
     description: "Hillside playground featuring tunnel and bridge-style elements that add variety to the community play experience.",
     address: "Near 420 Pine Ridge Road",
     images: [
@@ -80,9 +198,9 @@ const locations: MapLocation[] = [
   },
   {
     id: "tot-lot-g",
-    name: "Tot Lot G - Spruce Lane",
+    name: "Tot Lot G",
     category: "tot-lot",
-    coordinates: [39.0408, -77.4862],
+    coordinates: [38.916366, -77.557040],
     description: "Interactive play space with music-themed elements that encourages movement, creativity, and group play.",
     address: "Near 180 Spruce Lane",
     images: [
@@ -92,9 +210,9 @@ const locations: MapLocation[] = [
   },
   {
     id: "tot-lot-h",
-    name: "Tot Lot H - Elm Street",
+    name: "Tot Lot H",
     category: "tot-lot",
-    coordinates: [39.0458, -77.4845],
+    coordinates: [38.908311, -77.560725],
     description: "Adventure-style tot lot with balance and climbing features for active play in a neighborhood setting.",
     address: "Near 250 Elm Street",
     images: [
@@ -102,90 +220,27 @@ const locations: MapLocation[] = [
     ],
     tags: ["adventure", "rope course", "balance"],
   },
-  {
-    id: "tot-lot-i",
-    name: "Tot Lot I - Ash Avenue",
-    category: "tot-lot",
-    coordinates: [39.0432, -77.4850],
-    description: "Classic-style playground with familiar play equipment that serves as a convenient gathering point for nearby families.",
-    address: "Near 90 Ash Avenue",
-    images: [
-      "https://images.unsplash.com/photo-1571425046056-cfc17c664e7e?w=800&auto=format&fit=crop",
-    ],
-    tags: ["classic", "merry-go-round", "see-saw"],
-  },
-  // Ponds (3)
-  {
-    id: "north-pond",
-    name: "North Pond",
-    category: "pond",
-    coordinates: [39.0478, -77.4870],
-    description: "Scenic community pond with nearby walking access and open views that make it a popular pause point along local routes.",
-    address: "North Community Area",
-    images: [
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&auto=format&fit=crop",
-    ],
-    tags: ["walking path", "wildlife", "benches", "scenic"],
-  },
-  {
-    id: "south-pond",
-    name: "South Pond",
-    category: "pond",
-    coordinates: [39.0398, -77.4880],
-    description: "Quieter pond setting with natural plantings and a calm atmosphere suited for short breaks and casual observation.",
-    address: "South Community Area",
-    images: [
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format&fit=crop",
-    ],
-    tags: ["native plants", "dock", "quiet area"],
-  },
-  {
-    id: "east-pond",
-    name: "East Pond",
-    category: "pond",
-    coordinates: [39.0442, -77.4835],
-    description: "Largest pond area in the community, offering broad views and a strong visual focal point for nearby residents.",
-    address: "East Community Area",
-    images: [
-      "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800&auto=format&fit=crop",
-    ],
-    tags: ["fountain", "picnic area", "largest"],
-  },
-  // Pools (2)
-  {
-    id: "community-pool",
-    name: "Community Pool",
-    category: "pool",
-    coordinates: [39.0440, -77.4872],
-    description: "Primary community pool area used for seasonal recreation, including general swim and family-friendly amenities.",
-    address: "500 Community Center Drive",
-    images: [
-      "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1519315901367-f34ff9154487?w=800&auto=format&fit=crop",
-    ],
-    tags: ["lap lanes", "diving board", "splash area", "seasonal"],
-  },
-  {
-    id: "west-pool",
-    name: "West Pool",
-    category: "pool",
-    coordinates: [39.0435, -77.4905],
-    description: "Secondary neighborhood pool with a family-oriented layout and convenient access for nearby homes.",
-    address: "750 West Park Boulevard",
-    images: [
-      "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&auto=format&fit=crop",
-    ],
-    tags: ["zero-entry", "water slide", "family-friendly"],
-  },
+  // {
+  //   id: "tot-lot-i",
+  //   name: "Tot Lot I - Ash Avenue",
+  //   category: "tot-lot",
+  //   coordinates: [38.91068342670836, -77.54987601563097],
+  //   description: "Classic-style playground with familiar play equipment that serves as a convenient gathering point for nearby families.",
+  //   address: "Near 90 Ash Avenue",
+  //   images: [
+  //     "https://images.unsplash.com/photo-1571425046056-cfc17c664e7e?w=800&auto=format&fit=crop",
+  //   ],
+  //   tags: ["classic", "merry-go-round", "see-saw"],
+  // },
+
   // Clubhouse (1)
   {
     id: "main-clubhouse",
-    name: "Main Clubhouse",
+    name: "Clubhouse",
     category: "clubhouse",
-    coordinates: [39.0438, -77.4874],
-    description: "Central clubhouse and gathering space for community activities, meetings, and resident events.",
-    address: "500 Community Center Drive",
+    coordinates: [38.91179899240765, -77.55827891478674],
+    description: "Main clubhouse building with gym, party room, deck, and management office based on client-provided location details.",
+    address: "25520 Summerall Dr, Aldie, VA 20105",
     images: [
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop",
@@ -193,12 +248,13 @@ const locations: MapLocation[] = [
     ],
     tags: ["events", "fitness center", "meeting rooms", "rentals"],
   },
+
   // Cemetery (1)
   {
     id: "historic-cemetery",
     name: "Historic Cemetery",
     category: "cemetery",
-    coordinates: [39.0415, -77.4845],
+    coordinates: [38.9104, -77.5513],
     description: "Historic cemetery area preserved as a respectful memorial site within the Kirkpatrick Farms community.",
     address: "Historic District",
     images: [
@@ -211,7 +267,7 @@ const locations: MapLocation[] = [
     id: "pollinator-garden",
     name: "Pollinator Garden",
     category: "pollinator-garden",
-    coordinates: [39.0455, -77.4898],
+    coordinates: [38.9138, -77.5572],
     description: "Pollinator garden featuring native plantings that support butterflies, bees, and other beneficial wildlife.",
     address: "Near North Pond",
     images: [
@@ -223,85 +279,72 @@ const locations: MapLocation[] = [
 ];
 
 const trails: Trail[] = [
-  {
-    id: "trail-loop-1",
-    name: "Trail Loop 1 - Main Loop",
-    category: "trail",
-    coordinates: [
-      [39.0478, -77.4900],
-      [39.0475, -77.4885],
-      [39.0468, -77.4875],
-      [39.0455, -77.4865],
-      [39.0440, -77.4855],
-      [39.0425, -77.4850],
-      [39.0410, -77.4855],
-      [39.0398, -77.4870],
-      [39.0400, -77.4890],
-      [39.0415, -77.4905],
-      [39.0435, -77.4915],
-      [39.0455, -77.4912],
-      [39.0470, -77.4905],
-      [39.0478, -77.4900],
-    ],
-    description: "Primary perimeter walking route that connects major sections of the community with a steady, easy path.",
-    tags: ["paved", "loop", "2.5 miles", "easy"],
-    length: "2.5 miles",
-  },
+  // {
+  //   id: "trail-loop-1",
+  //   name: "Trail Loop 1 - Main Loop",
+  //   category: "trail",
+  //   coordinates: [
+  //     [38.9166, -77.5609],
+  //     [38.9160, -77.5594],
+  //     [38.9155, -77.5578],
+  //     [38.9146, -77.5566],
+  //     [38.9133, -77.5552],
+  //     [38.9120, -77.5542],
+  //     [38.9108, -77.5537],
+  //     [38.9097, -77.5546],
+  //     [38.9093, -77.5564],
+  //     [38.9099, -77.5586],
+  //     [38.9110, -77.5602],
+  //     [38.9129, -77.5608],
+  //     [38.9148, -77.5609],
+  //     [38.9166, -77.5609],
+  //   ],
+  //   description: "Primary perimeter walking route that connects major sections of the community with a steady, easy path.",
+  //   tags: ["paved", "loop", "2.5 miles", "easy"],
+  //   length: "2.5 miles",
+  // },
   {
     id: "trail-connector-1",
     name: "Trail Connector - North Section",
     category: "trail",
     coordinates: [
-      [39.0468, -77.4875],
-      [39.0460, -77.4878],
-      [39.0450, -77.4882],
-      [39.0440, -77.4880],
+      [38.906676, -77.562521],
+      [38.914473, -77.560471],
+      // [38.9155, -77.5578],
+      // [38.9148, -77.5579],
+      // [38.9139, -77.5582],
+      // [38.9129, -77.5580],
     ],
     description: "Short connector segment linking northern neighborhood routes with central community amenities.",
     tags: ["connector", "paved", "short"],
     length: "0.3 miles",
   },
-  {
-    id: "trail-connector-2",
-    name: "Trail Connector - South Section",
-    category: "trail",
-    coordinates: [
-      [39.0415, -77.4870],
-      [39.0420, -77.4865],
-      [39.0428, -77.4858],
-      [39.0435, -77.4855],
-    ],
-    description: "South-side connector segment that improves walkability between nearby homes and main trail routes.",
-    tags: ["connector", "paved", "scenic"],
-    length: "0.25 miles",
-  },
-  {
-    id: "trail-pond-loop",
-    name: "Pond Trail Loop",
-    category: "trail",
-    coordinates: [
-      [39.0445, -77.4840],
-      [39.0448, -77.4832],
-      [39.0442, -77.4825],
-      [39.0435, -77.4830],
-      [39.0438, -77.4840],
-      [39.0445, -77.4840],
-    ],
-    description: "Pond-side walking loop that offers a quieter route option and scenic views around the water feature.",
-    tags: ["loop", "gravel", "wildlife", "benches"],
-    length: "0.5 miles",
-  },
+  // {
+  //   id: "trail-connector-2",
+  //   name: "Trail Connector - South Section",
+  //   category: "trail",
+  //   coordinates: [
+  //     [38.9104, -77.5550],
+  //     [38.9110, -77.5546],
+  //     [38.9117, -77.5542],
+  //     [38.9124, -77.5539],
+  //   ],
+  //   description: "South-side connector segment that improves walkability between nearby homes and main trail routes.",
+  //   tags: ["connector", "paved", "scenic"],
+  //   length: "0.25 miles",
+  // },
+
 ];
 
 const boundary: CommunityBoundary = {
   id: "kirkpatrick-farms-boundary",
   name: "Kirkpatrick Farms Community Boundary",
   coordinates: [
-    [39.0485, -77.4920],
-    [39.0485, -77.4825],
-    [39.0390, -77.4825],
-    [39.0390, -77.4920],
-    [39.0485, -77.4920],
+    [38.9182, -77.5724],
+    [38.9182, -77.5473],
+    [38.9058, -77.5473],
+    [38.9058, -77.5724],
+    [38.9182, -77.5724],
   ],
 };
 
@@ -315,8 +358,8 @@ export const communityMapData: CommunityMapData = {
 
 // Tracks which parts still need client-provided source data.
 export const dataReadiness = {
-  photosProvidedByClient: false,
-  descriptionsProvidedByClient: false,
+  photosProvidedByClient: true,
+  descriptionsProvidedByClient: true,
   boundariesConfirmedByClient: false,
   usesSampleData: true,
 } as const;

@@ -2,6 +2,8 @@ export type LocationCategory =
   | "tot-lot"
   | "pond"
   | "pool"
+  | "tennis-court"
+  | "basketball-court"
   | "clubhouse"
   | "cemetery"
   | "pollinator-garden"
@@ -67,6 +69,18 @@ export const CATEGORY_INFO: Record<LocationCategory, CategoryInfo> = {
     label: "Pool",
     color: "#06b6d4",
     icon: "droplets",
+  },
+  "tennis-court": {
+    id: "tennis-court",
+    label: "Tennis Court",
+    color: "#f97316",
+    icon: "target",
+  },
+  "basketball-court": {
+    id: "basketball-court",
+    label: "Basketball Court",
+    color: "#ef4444",
+    icon: "dribbble",
   },
   clubhouse: {
     id: "clubhouse",
