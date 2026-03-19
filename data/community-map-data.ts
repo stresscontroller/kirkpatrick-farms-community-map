@@ -10,7 +10,7 @@ const locations: MapLocation[] = [
     name: "Tot Lot A - Maple Grove",
     category: "tot-lot",
     coordinates: [39.0445, -77.4885],
-    description: "A colorful playground featuring climbing structures, swings, and a sandbox. Perfect for children ages 2-5.",
+    description: "Neighborhood tot lot with colorful play features, including swings and climbers, designed for younger children and quick family visits.",
     address: "Near 100 Maple Grove Lane",
     images: [
       "https://images.unsplash.com/photo-1575783970733-1aaedde1db74?w=800&auto=format&fit=crop",
@@ -23,7 +23,7 @@ const locations: MapLocation[] = [
     name: "Tot Lot B - Oak Park",
     category: "tot-lot",
     coordinates: [39.0452, -77.4868],
-    description: "Shaded playground with modern equipment including slides and climbing walls.",
+    description: "Shaded playground with modern slides and climbing elements, offering a comfortable stop during warm-weather walks.",
     address: "Near 200 Oak Park Drive",
     images: [
       "https://images.unsplash.com/photo-1566454825481-f0e7e9fd3dbc?w=800&auto=format&fit=crop",
@@ -35,7 +35,7 @@ const locations: MapLocation[] = [
     name: "Tot Lot C - Willow Way",
     category: "tot-lot",
     coordinates: [39.0428, -77.4892],
-    description: "Nature-themed playground with wooden structures and sensory play areas.",
+    description: "Nature-inspired tot lot with wood-style structures and sensory play features that blend with the surrounding landscape.",
     address: "Near 150 Willow Way",
     images: [
       "https://images.unsplash.com/photo-1596461010909-53a19d0f8f0a?w=800&auto=format&fit=crop",
@@ -47,7 +47,7 @@ const locations: MapLocation[] = [
     name: "Tot Lot D - Birch Circle",
     category: "tot-lot",
     coordinates: [39.0465, -77.4855],
-    description: "Compact playground perfect for toddlers with soft rubber surfacing.",
+    description: "Compact toddler-friendly play area with soft surfacing and age-appropriate equipment for safe, everyday use.",
     address: "Near 75 Birch Circle",
     images: [
       "https://images.unsplash.com/photo-1576439663945-9e20a6c4b8f5?w=800&auto=format&fit=crop",
@@ -59,7 +59,7 @@ const locations: MapLocation[] = [
     name: "Tot Lot E - Cedar Court",
     category: "tot-lot",
     coordinates: [39.0418, -77.4878],
-    description: "Large playground with separate areas for different age groups.",
+    description: "Larger neighborhood tot lot with separate activity zones to support play for different age groups.",
     address: "Near 300 Cedar Court",
     images: [
       "https://images.unsplash.com/photo-1680458841800-f74b1e5f4e47?w=800&auto=format&fit=crop",
@@ -71,7 +71,7 @@ const locations: MapLocation[] = [
     name: "Tot Lot F - Pine Ridge",
     category: "tot-lot",
     coordinates: [39.0472, -77.4888],
-    description: "Hillside playground with unique tunnel and bridge features.",
+    description: "Hillside playground featuring tunnel and bridge-style elements that add variety to the community play experience.",
     address: "Near 420 Pine Ridge Road",
     images: [
       "https://images.unsplash.com/photo-1587691592099-24045a3a9f29?w=800&auto=format&fit=crop",
@@ -83,7 +83,7 @@ const locations: MapLocation[] = [
     name: "Tot Lot G - Spruce Lane",
     category: "tot-lot",
     coordinates: [39.0408, -77.4862],
-    description: "Musical playground featuring drums, chimes, and xylophones.",
+    description: "Interactive play space with music-themed elements that encourages movement, creativity, and group play.",
     address: "Near 180 Spruce Lane",
     images: [
       "https://images.unsplash.com/photo-1577896851905-dc99e1f8b4b9?w=800&auto=format&fit=crop",
@@ -95,7 +95,7 @@ const locations: MapLocation[] = [
     name: "Tot Lot H - Elm Street",
     category: "tot-lot",
     coordinates: [39.0458, -77.4845],
-    description: "Adventure playground with rope courses and balance beams.",
+    description: "Adventure-style tot lot with balance and climbing features for active play in a neighborhood setting.",
     address: "Near 250 Elm Street",
     images: [
       "https://images.unsplash.com/photo-1560015534-cee980c1d42a?w=800&auto=format&fit=crop",
@@ -107,7 +107,7 @@ const locations: MapLocation[] = [
     name: "Tot Lot I - Ash Avenue",
     category: "tot-lot",
     coordinates: [39.0432, -77.4850],
-    description: "Classic playground design with merry-go-round and see-saws.",
+    description: "Classic-style playground with familiar play equipment that serves as a convenient gathering point for nearby families.",
     address: "Near 90 Ash Avenue",
     images: [
       "https://images.unsplash.com/photo-1571425046056-cfc17c664e7e?w=800&auto=format&fit=crop",
@@ -120,7 +120,7 @@ const locations: MapLocation[] = [
     name: "North Pond",
     category: "pond",
     coordinates: [39.0478, -77.4870],
-    description: "Scenic retention pond with a walking path around the perimeter. Home to various waterfowl and fish.",
+    description: "Scenic community pond with nearby walking access and open views that make it a popular pause point along local routes.",
     address: "North Community Area",
     images: [
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop",
@@ -133,7 +133,7 @@ const locations: MapLocation[] = [
     name: "South Pond",
     category: "pond",
     coordinates: [39.0398, -77.4880],
-    description: "Quiet pond area with native plantings and a small dock for observation.",
+    description: "Quieter pond setting with natural plantings and a calm atmosphere suited for short breaks and casual observation.",
     address: "South Community Area",
     images: [
       "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format&fit=crop",
@@ -145,7 +145,7 @@ const locations: MapLocation[] = [
     name: "East Pond",
     category: "pond",
     coordinates: [39.0442, -77.4835],
-    description: "The largest pond in the community featuring a fountain and surrounding picnic area.",
+    description: "Largest pond area in the community, offering broad views and a strong visual focal point for nearby residents.",
     address: "East Community Area",
     images: [
       "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800&auto=format&fit=crop",
@@ -158,7 +158,7 @@ const locations: MapLocation[] = [
     name: "Community Pool",
     category: "pool",
     coordinates: [39.0440, -77.4872],
-    description: "Main community pool with lap lanes, diving board, and children's splash area. Open Memorial Day through Labor Day.",
+    description: "Primary community pool area used for seasonal recreation, including general swim and family-friendly amenities.",
     address: "500 Community Center Drive",
     images: [
       "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=800&auto=format&fit=crop",
@@ -171,7 +171,7 @@ const locations: MapLocation[] = [
     name: "West Pool",
     category: "pool",
     coordinates: [39.0435, -77.4905],
-    description: "Family-friendly pool with zero-entry section and water slide.",
+    description: "Secondary neighborhood pool with a family-oriented layout and convenient access for nearby homes.",
     address: "750 West Park Boulevard",
     images: [
       "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&auto=format&fit=crop",
@@ -184,7 +184,7 @@ const locations: MapLocation[] = [
     name: "Main Clubhouse",
     category: "clubhouse",
     coordinates: [39.0438, -77.4874],
-    description: "The heart of Kirkpatrick Farms featuring a grand hall, meeting rooms, fitness center, and outdoor patio. Available for private events.",
+    description: "Central clubhouse and gathering space for community activities, meetings, and resident events.",
     address: "500 Community Center Drive",
     images: [
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop",
@@ -199,7 +199,7 @@ const locations: MapLocation[] = [
     name: "Historic Cemetery",
     category: "cemetery",
     coordinates: [39.0415, -77.4845],
-    description: "A preserved historic cemetery dating back to the 1800s. Please be respectful when visiting this peaceful memorial site.",
+    description: "Historic cemetery area preserved as a respectful memorial site within the Kirkpatrick Farms community.",
     address: "Historic District",
     images: [
       "https://images.unsplash.com/photo-1509128841709-6c13b25058a3?w=800&auto=format&fit=crop",
@@ -212,7 +212,7 @@ const locations: MapLocation[] = [
     name: "Pollinator Garden",
     category: "pollinator-garden",
     coordinates: [39.0455, -77.4898],
-    description: "A beautiful native plant garden designed to attract butterflies, bees, and hummingbirds. Features educational signage about local pollinators.",
+    description: "Pollinator garden featuring native plantings that support butterflies, bees, and other beneficial wildlife.",
     address: "Near North Pond",
     images: [
       "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&auto=format&fit=crop",
@@ -243,7 +243,7 @@ const trails: Trail[] = [
       [39.0470, -77.4905],
       [39.0478, -77.4900],
     ],
-    description: "The main perimeter trail circling the entire community. Approximately 2.5 miles with gentle terrain.",
+    description: "Primary perimeter walking route that connects major sections of the community with a steady, easy path.",
     tags: ["paved", "loop", "2.5 miles", "easy"],
     length: "2.5 miles",
   },
@@ -257,7 +257,7 @@ const trails: Trail[] = [
       [39.0450, -77.4882],
       [39.0440, -77.4880],
     ],
-    description: "A connector trail linking the north side to the clubhouse area.",
+    description: "Short connector segment linking northern neighborhood routes with central community amenities.",
     tags: ["connector", "paved", "short"],
     length: "0.3 miles",
   },
@@ -271,7 +271,7 @@ const trails: Trail[] = [
       [39.0428, -77.4858],
       [39.0435, -77.4855],
     ],
-    description: "A scenic connector through the south community area.",
+    description: "South-side connector segment that improves walkability between nearby homes and main trail routes.",
     tags: ["connector", "paved", "scenic"],
     length: "0.25 miles",
   },
@@ -287,7 +287,7 @@ const trails: Trail[] = [
       [39.0438, -77.4840],
       [39.0445, -77.4840],
     ],
-    description: "A peaceful loop around East Pond with benches and wildlife viewing areas.",
+    description: "Pond-side walking loop that offers a quieter route option and scenic views around the water feature.",
     tags: ["loop", "gravel", "wildlife", "benches"],
     length: "0.5 miles",
   },
