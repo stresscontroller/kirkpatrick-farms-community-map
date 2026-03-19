@@ -340,11 +340,11 @@ const boundary: CommunityBoundary = {
   id: "kirkpatrick-farms-boundary",
   name: "Kirkpatrick Farms Community Boundary",
   coordinates: [
-    [38.9182, -77.5724],
-    [38.9182, -77.5473],
+    [38.9234, -77.5724],
+    [38.9234, -77.5473],
     [38.9058, -77.5473],
     [38.9058, -77.5724],
-    [38.9182, -77.5724],
+    [38.9234, -77.5724],
   ],
 };
 

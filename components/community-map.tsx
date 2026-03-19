@@ -27,6 +27,7 @@ interface CommunityMapProps {
 }
 
 type MapStyle = "street" | "satellite";
+const MAX_MAP_ZOOM = 20;
 
 const createBaseTileLayer = (style: MapStyle) => {
   if (style === "satellite") {
@@ -35,6 +36,8 @@ const createBaseTileLayer = (style: MapStyle) => {
       {
         attribution:
           "Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+        maxNativeZoom: 19,
+        maxZoom: MAX_MAP_ZOOM,
       }
     );
   }
@@ -42,6 +45,8 @@ const createBaseTileLayer = (style: MapStyle) => {
   return L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxNativeZoom: 19,
+    maxZoom: MAX_MAP_ZOOM,
   });
 };
 
@@ -77,7 +82,7 @@ export function CommunityMap({
       maxBounds: boundaryBounds.pad(0.05),
       maxBoundsViscosity: 1,
       minZoom: 14,
-      maxZoom: 18,
+      maxZoom: MAX_MAP_ZOOM,
     });
 
     const baseLayer = createBaseTileLayer("street");

@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { FilterBar } from "@/components/filter-bar";
 import { MapLegend } from "@/components/map-legend";
@@ -79,7 +78,7 @@ export function MapPanel({
         </div>
       </div>
 
-      <ScrollArea className="flex-1">
+      <div className="flex-1 overflow-y-auto">
         <div className="space-y-4 p-4">
           {/* Selected Location Detail */}
           {selectedLocation && (
@@ -161,7 +160,7 @@ export function MapPanel({
             )}
           </div>
         </div>
-      </ScrollArea>
+      </div>
 
       {/* Gallery Modal */}
       {selectedLocation && "images" in selectedLocation && (

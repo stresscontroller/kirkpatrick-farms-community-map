@@ -218,12 +218,12 @@ export default function HomePage() {
       </header>
 
       {/* Main Content */}
-      <div className="relative flex flex-1 overflow-hidden">
+      <div className="relative flex min-h-0 flex-1 overflow-hidden">
         <div className="pointer-events-none absolute top-16 left-4 z-[1200] max-w-lg print:hidden">
           {/* <DataReadinessBanner className="pointer-events-auto shadow-sm" /> */}
         </div>
         {/* Desktop Sidebar */}
-        <aside className="hidden w-80 shrink-0 border-r bg-background lg:block print:hidden">
+        <aside className="hidden min-h-0 w-80 shrink-0 border-r bg-background lg:block print:hidden">
           <MapPanel
             selectedLocation={selectedLocation}
             onLocationSelect={handleLocationSelect}
