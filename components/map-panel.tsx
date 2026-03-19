@@ -12,7 +12,7 @@ import { CommunitySummary } from "@/components/community-summary";
 import { communityMapData } from "@/data/community-map-data";
 import type { MapLocation, Trail, LocationCategory } from "@/types/map";
 import { Search, MapIcon } from "lucide-react";
-import { Empty } from "@/components/ui/empty";
+import { Empty, EmptyDescription, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
 
 interface MapPanelProps {
   selectedLocation: MapLocation | Trail | null;
@@ -129,15 +129,15 @@ export function MapPanel({
             </h3>
             {filteredLocations.length === 0 ? (
               <Empty className="py-8">
-                <Empty.Icon>
+                <EmptyMedia variant="icon">
                   <MapIcon className="h-10 w-10" />
-                </Empty.Icon>
-                <Empty.Title>No locations found</Empty.Title>
-                <Empty.Description>
+                </EmptyMedia>
+                <EmptyTitle>No locations found</EmptyTitle>
+                <EmptyDescription>
                   {searchQuery
                     ? "Try adjusting your search or filters"
                     : "Select some filters to see locations"}
-                </Empty.Description>
+                </EmptyDescription>
               </Empty>
             ) : (
               <div className="space-y-2">
