@@ -191,13 +191,16 @@ export function CommunityMap({
 
       const marker = L.marker(location.coordinates, { icon })
         .addTo(mapRef.current!)
-        .bindTooltip(location.name, {
-          permanent: false,
-          direction: "top",
-          className: "custom-tooltip",
+        .bindPopup(location.name, {
+          closeButton: false,
+          autoPan: true,
+          autoClose: true,
+          closeOnClick: true,
+          className: "custom-label-popup",
         });
 
       marker.on("click", () => {
+        marker.openPopup();
         onLocationSelect(location);
       });
 
@@ -226,13 +229,16 @@ export function CommunityMap({
           }
         ).addTo(mapRef.current!);
 
-        polyline.bindTooltip(trail.name, {
-          permanent: false,
-          direction: "top",
-          className: "custom-tooltip",
+        polyline.bindPopup(trail.name, {
+          closeButton: false,
+          autoPan: true,
+          autoClose: true,
+          closeOnClick: true,
+          className: "custom-label-popup",
         });
 
         polyline.on("click", () => {
+          polyline.openPopup();
           onLocationSelect(trail);
         });
 
@@ -336,14 +342,22 @@ export function CommunityMap({
           background: transparent !important;
           border: none !important;
         }
-        .custom-tooltip {
-          background: white;
+        .custom-label-popup .leaflet-popup-content-wrapper {
+          border-radius: 8px;
           border: 1px solid #e5e7eb;
-          border-radius: 6px;
-          padding: 4px 8px;
-          font-size: 12px;
-          font-weight: 500;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+          padding: 0;
+        }
+        .custom-label-popup .leaflet-popup-content {
+          margin: 0;
+          padding: 8px 12px;
+          font-size: 15px;
+          line-height: 1.3;
+          font-weight: 600;
+          color: #111827;
+        }
+        .custom-label-popup .leaflet-popup-tip {
+          background: white;
         }
         .leaflet-popup-content-wrapper {
           border-radius: 8px;
