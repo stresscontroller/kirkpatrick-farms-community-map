@@ -42,7 +42,7 @@ export function MobilePanelDrawer({
         <Button
           variant="secondary"
           size="lg"
-          className="fixed bottom-4 left-1/2 z-[1000] -translate-x-1/2 gap-2 shadow-lg md:hidden"
+          className="fixed bottom-4 left-1/2 z-[1000] -translate-x-1/2 gap-2 shadow-lg lg:hidden"
         >
           <Filter className="h-4 w-4" />
           Filters & Search

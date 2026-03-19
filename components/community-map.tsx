@@ -28,6 +28,9 @@ interface CommunityMapProps {
 
 type MapStyle = "street" | "satellite";
 const MAX_MAP_ZOOM = 20;
+const MOBILE_MIN_ZOOM = 14;
+const DESKTOP_MIN_ZOOM = 16;
+const DESKTOP_BREAKPOINT_PX = 1024;
 
 const createBaseTileLayer = (style: MapStyle) => {
   if (style === "satellite") {
@@ -64,7 +67,12 @@ export function CommunityMap({
   const boundaryMaskRef = useRef<L.Polygon | null>(null);
   const baseTileLayerRef = useRef<L.TileLayer | null>(null);
   const [isMapReady, setIsMapReady] = useState(false);
-  const [mapStyle, setMapStyle] = useState<MapStyle>("street");
+  const [mapStyle, setMapStyle] = useState<MapStyle>("satellite");
+
+  const getResponsiveMinZoom = () =>
+    window.innerWidth >= DESKTOP_BREAKPOINT_PX
+      ? DESKTOP_MIN_ZOOM
+      : MOBILE_MIN_ZOOM;
 
   // Initialize map
   useEffect(() => {
@@ -81,11 +89,11 @@ export function CommunityMap({
       zoomControl: false,
       maxBounds: boundaryBounds.pad(0.05),
       maxBoundsViscosity: 1,
-      minZoom: 14,
+      minZoom: getResponsiveMinZoom(),
       maxZoom: MAX_MAP_ZOOM,
     });
 
-    const baseLayer = createBaseTileLayer("street");
+    const baseLayer = createBaseTileLayer("satellite");
     baseLayer.addTo(map);
     baseTileLayerRef.current = baseLayer;
 
@@ -109,11 +117,9 @@ export function CommunityMap({
     const boundary = L.polygon(
       boundaryCoords,
       {
-        color: "#22c55e",
-        weight: 3,
-        fillColor: "#22c55e",
-        fillOpacity: 0.05,
-        dashArray: "5, 10",
+        color: "#ffffff",
+        weight: 2.5,
+        fillOpacity: 0,
       }
     ).addTo(map);
     boundaryRef.current = boundary;
@@ -128,6 +134,28 @@ export function CommunityMap({
       mapRef.current = null;
       boundaryMaskRef.current = null;
       baseTileLayerRef.current = null;
+    };
+  }, []);
+
+  // Keep min zoom responsive between desktop and mobile breakpoints.
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    const syncMinZoom = () => {
+      if (!mapRef.current) return;
+      const nextMinZoom = getResponsiveMinZoom();
+      mapRef.current.setMinZoom(nextMinZoom);
+
+      if (mapRef.current.getZoom() < nextMinZoom) {
+        mapRef.current.setZoom(nextMinZoom);
+      }
+    };
+
+    syncMinZoom();
+    window.addEventListener("resize", syncMinZoom);
+
+    return () => {
+      window.removeEventListener("resize", syncMinZoom);
     };
   }, []);
 
