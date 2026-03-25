@@ -223,9 +223,8 @@ export function CommunityMap({
           trail.coordinates.map(([lat, lng]) => [lat, lng]),
           {
             color: CATEGORY_INFO.trail.color,
-            weight: 4,
+            weight: 2,
             opacity: 0.8,
-            dashArray: trail.id.includes("connector") ? "10, 10" : undefined,
           }
         ).addTo(mapRef.current!);
 

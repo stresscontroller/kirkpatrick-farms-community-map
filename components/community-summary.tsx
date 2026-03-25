@@ -46,7 +46,7 @@ export function CommunitySummary({
     { category: "clubhouse", label: "Clubhouse" },
     { category: "cemetery", label: "Cemetery" },
     { category: "pollinator-garden", label: "Garden" },
-    { category: "trail", label: "Trail Segments" },
+    { category: "trail", label: "Walking Trail" },
   ];
 
   return (
