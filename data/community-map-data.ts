@@ -114,24 +114,24 @@ const locations: MapLocation[] = [
     name: "Clubhouse Tennis Court",
     category: "tennis-court",
     coordinates: [38.911155, -77.558544],
-    description: "Primary tennis court at the clubhouse complex, based on the client-provided clubhouse satellite image.",
+    description: "Community tennis court near the clubhouse, offering a dedicated space for recreational matches, practice, and everyday play.",
     address: "25520 Summerall Dr, Aldie, VA 20105",
     images: [
-      "https://images.unsplash.com/photo-1471295253337-3ceaaedca402?w=800&auto=format&fit=crop",
+      "/images/locations/cherish-ct-tennis-bball.jpg",
     ],
     tags: ["tennis", "clubhouse", "summerall dr"],
   },
   {
     id: "cherish-ct-tennis-court",
-    name: "Cherish Ct Tennis Court",
+    name: "Cherish Court Tennis Court",
     category: "tennis-court",
     coordinates: [38.914611, -77.550114],
-    description: "Second tennis court location near Cherish Court and Destiny Drive from client reference imagery.",
-    address: "Near Cherish Ct & Destiny Dr, Aldie, VA",
+    description: "Neighborhood tennis court providing additional space for casual games, practice sessions, and outdoor recreation within the community.",
+    address: "Near Cherish Court, Aldie, VA",
     images: [
-      "https://images.unsplash.com/photo-1471295253337-3ceaaedca402?w=800&auto=format&fit=crop",
+      "/images/locations/cherish-ct-tennis-bball.jpg",
     ],
-    tags: ["tennis", "cherish ct", "destiny dr"],
+    tags: ["tennis", "cherish ct"],
   },
 
   // Basketball Court (2)
@@ -140,24 +140,24 @@ const locations: MapLocation[] = [
     name: "Clubhouse Basketball Court",
     category: "basketball-court",
     coordinates: [38.911055, -77.558297],
-    description: "Primary basketball court at the clubhouse complex, split from tennis for independent filtering.",
+    description: "Community basketball court near the clubhouse, providing a convenient space for pickup games, shooting practice, and active recreation.",
     address: "25520 Summerall Dr, Aldie, VA 20105",
     images: [
-      "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&auto=format&fit=crop",
+      "/images/locations/cherish-ct-tennis-bball.jpg",
     ],
     tags: ["basketball", "clubhouse", "summerall dr"],
   },
   {
     id: "cherish-ct-basketball-court",
-    name: "Cherish Ct Basketball Court",
+    name: "Cherish Court Basketball Court",
     category: "basketball-court",
     coordinates: [38.914578, -77.549819],
-    description: "Second basketball court location near Cherish Court and Destiny Drive from client reference imagery.",
-    address: "Near Cherish Ct & Destiny Dr, Aldie, VA",
+    description: "Neighborhood basketball court offering extra space for casual play, practice, and everyday outdoor activity in the community.",
+    address: "Near Cherish Court, Aldie, VA",
     images: [
-      "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&auto=format&fit=crop",
+      "/images/locations/cherish-ct-tennis-bball.jpg",
     ],
-    tags: ["basketball", "cherish ct", "destiny dr"],
+    tags: ["basketball", "cherish ct"],
   },
 
   // Tot Lots (7)

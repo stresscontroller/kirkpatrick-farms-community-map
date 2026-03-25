@@ -31,6 +31,7 @@ const MAX_MAP_ZOOM = 20;
 const MOBILE_MIN_ZOOM = 14;
 const DESKTOP_MIN_ZOOM = 16;
 const DESKTOP_BREAKPOINT_PX = 1024;
+const OUTSIDE_MASK_COLOR = "#111827";
 
 const createBaseTileLayer = (style: MapStyle) => {
   if (style === "satellite") {
@@ -41,6 +42,8 @@ const createBaseTileLayer = (style: MapStyle) => {
           "",
         maxNativeZoom: 19,
         maxZoom: MAX_MAP_ZOOM,
+        noWrap: true,
+        keepBuffer: 6,
       }
     );
   }
@@ -50,6 +53,8 @@ const createBaseTileLayer = (style: MapStyle) => {
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     maxNativeZoom: 19,
     maxZoom: MAX_MAP_ZOOM,
+    noWrap: true,
+    keepBuffer: 6,
   });
 };
 
@@ -64,7 +69,6 @@ export function CommunityMap({
   const markersRef = useRef<L.Marker[]>([]);
   const polylinesRef = useRef<L.Polyline[]>([]);
   const boundaryRef = useRef<L.Polygon | null>(null);
-  const boundaryMaskRef = useRef<L.Polygon | null>(null);
   const baseTileLayerRef = useRef<L.TileLayer | null>(null);
   const [isMapReady, setIsMapReady] = useState(false);
   const [mapStyle, setMapStyle] = useState<MapStyle>("satellite");
@@ -82,6 +86,48 @@ export function CommunityMap({
       ([lat, lng]) => [lat, lng] as [number, number]
     );
     const boundaryBounds = L.latLngBounds(boundaryCoords);
+    let clipRafId: number | null = null;
+    let settleTimerId: number | null = null;
+    const syncTileClip = () => {
+      const tilePane = map.getPane("tilePane");
+      if (!tilePane) return;
+      const clipPath = `polygon(${boundaryCoords
+        .map(([lat, lng]) => {
+          const point = map.latLngToLayerPoint([lat, lng]);
+          return `${point.x}px ${point.y}px`;
+        })
+        .join(", ")})`;
+      tilePane.style.clipPath = clipPath;
+      tilePane.style.setProperty("-webkit-clip-path", clipPath);
+    };
+    const setTilePaneOpacity = (opacity: number) => {
+      const tilePane = map.getPane("tilePane");
+      if (!tilePane) return;
+      tilePane.style.opacity = `${opacity}`;
+    };
+    const beginMotionFade = () => {
+      if (settleTimerId !== null) {
+        window.clearTimeout(settleTimerId);
+        settleTimerId = null;
+      }
+      setTilePaneOpacity(0.94);
+    };
+    const endMotionFade = () => {
+      if (settleTimerId !== null) {
+        window.clearTimeout(settleTimerId);
+      }
+      settleTimerId = window.setTimeout(() => {
+        setTilePaneOpacity(1);
+        settleTimerId = null;
+      }, 70);
+    };
+    const scheduleTileClipSync = () => {
+      if (clipRafId !== null) return;
+      clipRafId = window.requestAnimationFrame(() => {
+        clipRafId = null;
+        syncTileClip();
+      });
+    };
 
     const map = L.map(mapContainerRef.current, {
       center: communityMapData.center,
@@ -96,22 +142,19 @@ export function CommunityMap({
     const baseLayer = createBaseTileLayer("satellite");
     baseLayer.addTo(map);
     baseTileLayerRef.current = baseLayer;
-
-    // Dim areas outside community while keeping the interior clear.
-    // This provides a "community-only" focus even before final boundary confirmation.
-    const worldRing: [number, number][] = [
-      [90, -180],
-      [90, 180],
-      [-90, 180],
-      [-90, -180],
-    ];
-    const boundaryMask = L.polygon([worldRing, boundaryCoords], {
-      stroke: false,
-      fillColor: "#111827",
-      fillOpacity: 1,
-      interactive: false,
-    }).addTo(map);
-    boundaryMaskRef.current = boundaryMask;
+    syncTileClip();
+    setTilePaneOpacity(1);
+    map.on("movestart", beginMotionFade);
+    map.on("zoomstart", beginMotionFade);
+    map.on("move", scheduleTileClipSync);
+    map.on("zoom", scheduleTileClipSync);
+    map.on("zoomanim", scheduleTileClipSync);
+    map.on("viewreset", scheduleTileClipSync);
+    map.on("resize", scheduleTileClipSync);
+    map.on("moveend", syncTileClip);
+    map.on("zoomend", syncTileClip);
+    map.on("moveend", endMotionFade);
+    map.on("zoomend", endMotionFade);
 
     // Add community boundary
     const boundary = L.polygon(
@@ -126,13 +169,36 @@ export function CommunityMap({
 
     mapRef.current = map;
     map.whenReady(() => {
+      syncTileClip();
       setIsMapReady(true);
     });
 
     return () => {
+      map.off("move", scheduleTileClipSync);
+      map.off("zoom", scheduleTileClipSync);
+      map.off("zoomanim", scheduleTileClipSync);
+      map.off("viewreset", scheduleTileClipSync);
+      map.off("resize", scheduleTileClipSync);
+      map.off("movestart", beginMotionFade);
+      map.off("zoomstart", beginMotionFade);
+      map.off("moveend", syncTileClip);
+      map.off("zoomend", syncTileClip);
+      map.off("moveend", endMotionFade);
+      map.off("zoomend", endMotionFade);
+      if (clipRafId !== null) {
+        window.cancelAnimationFrame(clipRafId);
+      }
+      if (settleTimerId !== null) {
+        window.clearTimeout(settleTimerId);
+      }
+      const tilePane = map.getPane("tilePane");
+      if (tilePane) {
+        tilePane.style.clipPath = "";
+        tilePane.style.removeProperty("-webkit-clip-path");
+        tilePane.style.opacity = "1";
+      }
       map.remove();
       mapRef.current = null;
-      boundaryMaskRef.current = null;
       baseTileLayerRef.current = null;
     };
   }, []);
@@ -286,7 +352,11 @@ export function CommunityMap({
 
   return (
     <div className="relative h-full w-full print-map-container">
-      <div ref={mapContainerRef} className="h-full w-full" />
+      <div
+        ref={mapContainerRef}
+        className="h-full w-full"
+        style={{ backgroundColor: OUTSIDE_MASK_COLOR }}
+      />
 
       {/* Map Controls */}
       <div className="absolute top-4 right-4 z-[1000] flex flex-col gap-2 print:hidden">
@@ -363,6 +433,7 @@ export function CommunityMap({
         }
         .leaflet-container {
           font-family: inherit;
+          background: ${OUTSIDE_MASK_COLOR};
         }
         .leaflet-control-attribution {
           display: none;

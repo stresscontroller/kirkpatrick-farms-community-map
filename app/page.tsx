@@ -128,12 +128,12 @@ export default function HomePage() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <FeatureCard
                 icon="🏊"
-                title="2 Pools"
-                description="Community and West Pool with splash areas"
+                title="Pool"
+                description="Community Pool with splash areas"
               />
               <FeatureCard
                 icon="🛝"
-                title="9 Tot Lots"
+                title="7 Tot Lots"
                 description="Playgrounds throughout the community"
               />
               <FeatureCard
@@ -143,11 +143,16 @@ export default function HomePage() {
               />
               <FeatureCard
                 icon="🚶"
-                title="Walking Trails"
-                description="Miles of connected trails"
+                title="Walking Trail"
+                description="Miles of connected trail"
               />
             </div>
-            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <FeatureCard
+                icon="🎾"
+                title="Tennis & Basketball Courts"
+                description="Tennis and basketball courts near the clubhouse and near Cherish Court"
+              />
               <FeatureCard
                 icon="🏛️"
                 title="Clubhouse"

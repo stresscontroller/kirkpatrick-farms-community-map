@@ -113,7 +113,7 @@ export function LocationCard({
       <CardContent className="space-y-3 pt-0">
         <p className="text-sm text-muted-foreground">{location.description}</p>
 
-        {"address" in location && location.address && (
+        {/* {"address" in location && location.address && (
           <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
             <MapPin className="h-3.5 w-3.5" />
             <span>{location.address}</span>
@@ -141,7 +141,7 @@ export function LocationCard({
             <Printer className="mr-1.5 h-3.5 w-3.5" />
             Print
           </Button>
-        </div>
+        </div> */}
       </CardContent>
     </Card>
   );
