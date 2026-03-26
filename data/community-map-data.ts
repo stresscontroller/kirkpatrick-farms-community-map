@@ -38,13 +38,11 @@ const locations: MapLocation[] = [
     id: "pollinator-garden",
     name: "Pollinator Garden",
     category: "pollinator-garden",
-    coordinates: [38.912626, -77.561915],
+    coordinates: [38.915379, -77.556794],
     description: "Native plant area with natural vegetation supporting bees and butterflies, offering a quiet green space that promotes local wildlife and ecosystem health.",
     address: "Near North Pond",
     images: [
-      "/images/locations/pollinator-garden_1.png",
       "/images/locations/pollinator-garden_2.jpg",
-      "/images/locations/pollinator-garden_3.jpg",
     ],
     tags: ["pollinator garden", "native plants", "bees", "butterflies"],
   },
@@ -58,9 +56,7 @@ const locations: MapLocation[] = [
     description: "Neighborhood pond bordered by homes and open green space, offering calm water views and a quiet setting that supports local wildlife and outdoor relaxation.",
     address: "Near Bright Ct, Kirkpatrick Farms, Aldie, VA",
     images: [
-      "/images/locations/pond-1_1.png",
-      "/images/locations/pond-1_2.jpg",
-      "/images/locations/pond-1_3.png",
+      "/images/locations/pond-1_1.jpg",
     ],
     tags: ["bright court", "deck", "gazebo", "playground", "chess/checker", "cornhole", "byobags"],
   },
@@ -73,8 +69,6 @@ const locations: MapLocation[] = [
     address: "Near Mindful Ct, Kirkpatrick Farms, Aldie, VA",
     images: [
       "/images/locations/pond-2_1.png",
-      "/images/locations/pond-2_2.png",
-      "/images/locations/pond-2_3.jpg",
     ],
     tags: ["mindful court", "deck", "gazebo", "cornhole", "byobags"],
   },
@@ -87,7 +81,6 @@ const locations: MapLocation[] = [
     address: "Near Diligence Ct, Kirkpatrick Farms, Aldie, VA",
     images: [
       "/images/locations/pond-3_1.jpg",
-      "/images/locations/pond-3_2.jpg",
     ],
     tags: ["diligence court", "deck", "gazebo", "cornhole", "byobags"],
   },
