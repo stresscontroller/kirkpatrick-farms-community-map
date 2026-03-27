@@ -32,6 +32,8 @@ const MOBILE_MIN_ZOOM = 14;
 const DESKTOP_MIN_ZOOM = 16;
 const DESKTOP_BREAKPOINT_PX = 1024;
 const OUTSIDE_MASK_COLOR = "#111827";
+const TRAIL_HALO_COLOR = "#ffffff";
+const TRAIL_CORE_COLOR = "#22c55e";
 
 const createBaseTileLayer = (style: MapStyle) => {
   if (style === "satellite") {
@@ -317,12 +319,25 @@ export function CommunityMap({
     // Add trails if filter includes trails or no filter is applied
     if (activeFilters.length === 0 || activeFilters.includes("trail")) {
       communityMapData.trails.forEach((trail) => {
+        const halo = L.polyline(
+          trail.coordinates.map(([lat, lng]) => [lat, lng]),
+          {
+            color: TRAIL_HALO_COLOR,
+            weight: 5,
+            opacity: 0.9,
+            lineCap: "round",
+            lineJoin: "round",
+          }
+        ).addTo(mapRef.current!);
+
         const polyline = L.polyline(
           trail.coordinates.map(([lat, lng]) => [lat, lng]),
           {
-            color: CATEGORY_INFO.trail.color,
-            weight: 2,
-            opacity: 0.8,
+            color: TRAIL_CORE_COLOR,
+            weight: 2.5,
+            opacity: 1,
+            lineCap: "round",
+            lineJoin: "round",
           }
         ).addTo(mapRef.current!);
 
@@ -339,6 +354,7 @@ export function CommunityMap({
           onLocationSelect(trail);
         });
 
+        polylinesRef.current.push(halo);
         polylinesRef.current.push(polyline);
       });
     }
