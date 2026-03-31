@@ -7,7 +7,7 @@ import { FilterBar } from "@/components/filter-bar";
 import { LocationCard, LocationCardSkeleton } from "@/components/location-card";
 import { LocationGallery } from "@/components/location-gallery";
 import { CommunitySummary } from "@/components/community-summary";
-import { communityMapData } from "@/data/community-map-data";
+import { communityMapData, getGroupedTrail } from "@/data/community-map-data";
 import type { MapLocation, Trail, LocationCategory } from "@/types/map";
 import { Search, MapIcon } from "lucide-react";
 import { Empty, EmptyDescription, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
@@ -33,9 +33,10 @@ export function MapPanel({
   const [galleryOpen, setGalleryOpen] = useState(false);
 
   const filteredItems = useMemo(() => {
+    const groupedTrail = getGroupedTrail();
     let items: (MapLocation | Trail)[] = [
       ...communityMapData.locations,
-      ...communityMapData.trails,
+      ...(groupedTrail ? [groupedTrail] : []),
     ];
 
     const categoryKeywords: Partial<Record<LocationCategory, string[]>> = {

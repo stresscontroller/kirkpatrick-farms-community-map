@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { communityMapData } from "@/data/community-map-data";
+import { communityMapData, getGroupedTrail } from "@/data/community-map-data";
 import { CATEGORY_INFO, type MapLocation, type Trail, type LocationCategory } from "@/types/map";
 import { Button } from "@/components/ui/button";
 import { RotateCcw, ZoomIn, ZoomOut, Layers } from "lucide-react";
@@ -311,6 +311,7 @@ export function CommunityMap({
   // Update trails based on filters
   useEffect(() => {
     if (!mapRef.current || !isMapReady) return;
+    const groupedTrail = getGroupedTrail();
 
     // Clear existing polylines
     polylinesRef.current.forEach((polyline) => polyline.remove());
@@ -341,7 +342,7 @@ export function CommunityMap({
           }
         ).addTo(mapRef.current!);
 
-        polyline.bindPopup(trail.name, {
+        polyline.bindPopup(groupedTrail?.name ?? trail.name, {
           closeButton: false,
           autoPan: true,
           autoClose: true,
@@ -351,7 +352,7 @@ export function CommunityMap({
 
         polyline.on("click", () => {
           polyline.openPopup();
-          onLocationSelect(trail);
+          onLocationSelect(groupedTrail ?? trail);
         });
 
         polylinesRef.current.push(halo);
