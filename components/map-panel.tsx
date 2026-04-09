@@ -45,6 +45,7 @@ export function MapPanel({
       "tennis-court": ["tennis", "court", "tennis court", "tennis courts"],
       "basketball-court": ["basketball", "court", "basketball court"],
       gazebo: ["gazebo", "gazebos", "pavilion", "shelter"],
+      otter: ["otter", "otters", "wildlife", "animal"],
       bridge: ["bridge", "bridges", "footbridge", "crossing"],
     };
 

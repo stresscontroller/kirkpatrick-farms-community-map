@@ -8,6 +8,7 @@ export type LocationCategory =
   | "cemetery"
   | "pollinator-garden"
   | "gazebo"
+  | "otter"
   | "bridge"
   | "trail";
 
@@ -107,6 +108,12 @@ export const CATEGORY_INFO: Record<LocationCategory, CategoryInfo> = {
     label: "Gazebo",
     color: "#0f766e",
     icon: "umbrella",
+  },
+  otter: {
+    id: "otter",
+    label: "Otter",
+    color: "#7c3aed",
+    icon: "pawprint",
   },
   bridge: {
     id: "bridge",

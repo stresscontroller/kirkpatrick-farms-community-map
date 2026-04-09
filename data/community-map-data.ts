@@ -68,7 +68,7 @@ const locations: MapLocation[] = [
     description: "Neighborhood pond surrounded by homes and landscaped green space, providing peaceful water views and a quiet environment that supports local wildlife.",
     address: "Near Mindful Ct, Kirkpatrick Farms, Aldie, VA",
     images: [
-      "/images/locations/pond-2_1.png",
+      "/images/locations/pond-2_1.jpg",
     ],
     tags: ["mindful court", "deck", "gazebo", "cornhole", "byobags"],
   },
@@ -83,6 +83,19 @@ const locations: MapLocation[] = [
       "/images/locations/pond-3_1.jpg",
     ],
     tags: ["diligence court", "deck", "gazebo", "cornhole", "byobags"],
+  },
+  {
+    id: "captain-kirk-otter",
+    name: "Our Resident Otter Captain Kirk",
+    category: "otter",
+    coordinates: [38.914090, -77.559452],
+    description:
+      "",
+    address: "Near Bright Court Pond, Kirkpatrick Farms, Aldie, VA",
+    images: [
+      "/images/animals/captin-kirk-otter.png",
+    ],
+    tags: ["otter", "wildlife", "captain kirk", "pond"],
   },
   {
     id: "gazebo-bright-court",
@@ -118,7 +131,6 @@ const locations: MapLocation[] = [
     images: [
       "/images/locations/pool_1.jpg",
       "/images/locations/pool_2.jpg",
-      "/images/locations/pool_3.jpg",
     ],
     tags: ["pool", "lounge seating", "open deck", "seasonal"],
   },

@@ -13,6 +13,7 @@ import {
   Landmark,
   Flower2,
   Umbrella,
+  PawPrint,
   Waypoints,
   Footprints,
 } from "lucide-react";
@@ -27,6 +28,7 @@ const iconMap = {
   landmark: Landmark,
   flower2: Flower2,
   umbrella: Umbrella,
+  pawprint: PawPrint,
   waypoints: Waypoints,
   footprints: Footprints,
 };
