@@ -298,6 +298,12 @@ export function CommunityMap({
           closeOnClick: true,
           className: "custom-label-popup",
         });
+      marker.bindTooltip(location.name, {
+        permanent: true,
+        direction: "top",
+        offset: [0, -16],
+        className: "always-visible-label",
+      });
 
       marker.on("click", () => {
         marker.openPopup();
@@ -489,6 +495,20 @@ export function CommunityMap({
         }
         .leaflet-control-attribution {
           display: none;
+        }
+        .leaflet-tooltip.always-visible-label {
+          background: rgba(17, 24, 39, 0.88);
+          border: 1px solid rgba(255, 255, 255, 0.24);
+          color: #ffffff;
+          border-radius: 9999px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
+          padding: 3px 8px;
+          font-size: 11px;
+          font-weight: 600;
+          line-height: 1.2;
+        }
+        .leaflet-tooltip.always-visible-label::before {
+          border-top-color: rgba(17, 24, 39, 0.88);
         }
       `}</style>
     </div>
